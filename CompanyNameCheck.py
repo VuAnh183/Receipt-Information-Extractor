@@ -26,16 +26,16 @@ for filename in os.listdir(entities_folder):
         except json.JSONDecodeError:
             print(f"Skipping {filename}: Invalid JSON format")
 
-# Get the top 5 most frequent companies
-top_10_companies = {company for company, _ in company_counter.most_common(10)}
+# Get the top 8 most frequent companies
+top_8_companies = {company for company, _ in company_counter.most_common(10)}
 
 # Create labeled data
 df = pd.DataFrame(data, columns=["filename", "company"])
-df["label"] = df["company"].apply(lambda x: x if x in top_10_companies else "Other")
+df["label"] = df["company"].apply(lambda x: x if x in top_8_companies else "Other")
 
 # Print dataset summary
 print(f"Total Unique Companies: {len(company_counter)}")
-print(f"Top 10 Companies: {top_10_companies}")
+print(f"Top 8 Companies: {top_8_companies}")
 print(df["label"].value_counts())
 
 # Save to CSV for training
