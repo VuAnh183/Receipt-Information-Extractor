@@ -4,15 +4,15 @@ import shutil
 from collections import Counter
 
 # Paths to the original dataset
-original_entities_folder = "../Dataset/SROIE2019/test/entities"
-original_images_folder = "../Dataset/SROIE2019/test/img"
-original_box_folder = "../Dataset/SROIE2019/test/box"
+original_entities_folder = "../Dataset/SROIE2019/train/entities"
+original_images_folder = "../Dataset/SROIE2019/train/img"
+original_box_folder = "../Dataset/SROIE2019/train/box"
 
 # Paths for the new filtered dataset
 filtered_dataset_folder = "SROIE_filtered_dataset"
-filtered_entities_folder = os.path.join(filtered_dataset_folder, "test/entities")
-filtered_images_folder = os.path.join(filtered_dataset_folder, "test/img")
-filtered_box_folder = os.path.join(filtered_dataset_folder, "test/box")
+filtered_entities_folder = os.path.join(filtered_dataset_folder, "entities")
+filtered_images_folder = os.path.join(filtered_dataset_folder, "img")
+filtered_box_folder = os.path.join(filtered_dataset_folder, "box")
 
 # Create directories
 os.makedirs(filtered_entities_folder, exist_ok=True)
