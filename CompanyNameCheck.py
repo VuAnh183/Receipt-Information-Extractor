@@ -4,7 +4,7 @@ from collections import Counter
 import pandas as pd
 
 # Path to the entities folder
-entities_folder = "../Dataset/SROIE2019/train/entities"
+entities_folder = "SROIE_filtered_dataset/entities"
 
 # Dictionary to store company name counts
 company_counter = Counter()
@@ -27,7 +27,7 @@ for filename in os.listdir(entities_folder):
             print(f"Skipping {filename}: Invalid JSON format")
 
 # Get the top 8 most frequent companies
-top_8_companies = {company for company, _ in company_counter.most_common(10)}
+top_8_companies = {company for company, _ in company_counter.most_common(8)}
 
 # Create labeled data
 df = pd.DataFrame(data, columns=["filename", "company"])
