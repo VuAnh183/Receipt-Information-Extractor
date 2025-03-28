@@ -4,7 +4,7 @@ from collections import Counter
 import pandas as pd
 
 # Path to the entities folder
-entities_folder = "../Dataset/SROIE2019/train/entities"
+entities_folder = "SROIE_filtered_dataset/entities"
 
 # Dictionary to store company name counts
 company_counter = Counter()
@@ -26,16 +26,16 @@ for filename in os.listdir(entities_folder):
         except json.JSONDecodeError:
             print(f"Skipping {filename}: Invalid JSON format")
 
-# Get the top 8 most frequent companies
-top_8_companies = {company for company, _ in company_counter.most_common(10)}
+# Get the top 5 most frequent companies
+top_5_companies = {company for company, _ in company_counter.most_common(6)}
 
 # Create labeled data
 df = pd.DataFrame(data, columns=["filename", "company"])
-df["label"] = df["company"].apply(lambda x: x if x in top_8_companies else "Other")
+df["label"] = df["company"].apply(lambda x: x if x in top_5_companies else "Other")
 
 # Print dataset summary
 print(f"Total Unique Companies: {len(company_counter)}")
-print(f"Top 8 Companies: {top_8_companies}")
+print(f"Top 5 Companies: {top_5_companies}")
 print(df["label"].value_counts())
 
 # Save to CSV for training

@@ -4,9 +4,9 @@ import shutil
 from collections import Counter
 
 # Paths to the original dataset
-original_entities_folder = "../Dataset/SROIE2019/train/entities"
-original_images_folder = "../Dataset/SROIE2019/train/img"
-original_box_folder = "../Dataset/SROIE2019/train/box"
+original_entities_folder = "../Dataset/SROIE2019/test/entities"
+original_images_folder = "../Dataset/SROIE2019/test/img"
+original_box_folder = "../Dataset/SROIE2019/test/box"
 
 # Paths for the new filtered dataset
 filtered_dataset_folder = "SROIE_filtered_dataset"
@@ -33,11 +33,11 @@ for filename in entity_files:
         except json.JSONDecodeError:
             print(f"Skipping {filename}: Invalid JSON format")
 
-# Step 2: Identify the top 8 companies
-top_8_companies = [c[0] for c in company_counts.most_common(8)]
-print("Top 8 Companies:", top_8_companies)
+# Step 2: Identify the top 5 companies
+top_5_companies = [c[0] for c in company_counts.most_common(4)]
+print("Top 5 Companies:", top_5_companies)
 
-# Step 3: Copy only files related to the top 8 companies
+# Step 3: Copy only files related to the top 5 companies
 for filename in entity_files:
     entity_path = os.path.join(original_entities_folder, filename)
 
@@ -46,8 +46,8 @@ for filename in entity_files:
             data = json.load(f)
             company_name = data.get("company", "Unknown")
             
-            # If company is in the top 8, copy related files
-            if company_name in top_8_companies:
+            # If company is in the top 5, copy related files
+            if company_name in top_5_companies:
                 # Copy entity file
                 shutil.copy(entity_path, os.path.join(filtered_entities_folder, filename))
                 
