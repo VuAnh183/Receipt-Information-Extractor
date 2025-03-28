@@ -34,7 +34,7 @@ for filename in entity_files:
             print(f"Skipping {filename}: Invalid JSON format")
 
 # Step 2: Identify the top 5 companies
-top_5_companies = [c[0] for c in company_counts.most_common(5)]
+top_5_companies = [c[0] for c in company_counts.most_common(4)]
 print("Top 5 Companies:", top_5_companies)
 
 # Step 3: Copy only files related to the top 5 companies
